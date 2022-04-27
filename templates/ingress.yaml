@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "mlflow.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
+{{- $servicePort := .Values.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -32,8 +33,11 @@ spec:
       http:
         paths:
           - path: {{ $ingressPath }}
+	    pathType: Prefix
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: http
+	      service:
+	        name: {{ $fullName }}
+		port:
+		  number: {{ $servicePort }}
   {{- end }}
 {{- end }}
