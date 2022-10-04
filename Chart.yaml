@@ -17,8 +17,8 @@ maintainers:
   - name: fzalila
     email: faiez.zalila@cetic.be
     url: https://github.com/fzalila
-dependencies:
-  - name: postgresql
-    version: ~10.3.6
-    repository: https://charts.bitnami.com/bitnami
-    condition: db.default.enabled
+#dependencies:
+#  - name: postgresql
+#    version: ~10.3.6
+#    repository: https://charts.bitnami.com/bitnami
+#    condition: db.default.enabled
