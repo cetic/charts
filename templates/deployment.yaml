@@ -30,14 +30,20 @@ spec:
           env:
           - name: BACKEND_STORE_URI
             value: "{{ .Values.db.type }}://{{ .Values.db.user }}:{{ .Values.db.password }}@{{ .Values.db.host }}:{{ .Values.db.port }}/{{ .Values.db.database }}"
-          - name: DEFAULT_ARTIFACT_ROOT
-            value: {{ .Values.default_artifact_root }}
+          - name: ARTIFACTS_DESTINATION
+            value: {{ .Values.artifacts_destination }}
+          {{- if .Values.minio.enabled }}
           - name: MLFLOW_S3_ENDPOINT_URL
             value: {{ .Values.minio.url }}
+          {{- end }}
+          {{- if .Values.minio.enabled }}
           - name: AWS_ACCESS_KEY_ID
             value: {{ .Values.minio.accesskey }}
+          {{- end }}
+          {{- if .Values.minio.enabled }}
           - name: AWS_SECRET_ACCESS_KEY
             value: {{ .Values.minio.secretkey }}
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /

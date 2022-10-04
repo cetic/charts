@@ -9,7 +9,7 @@ image:
 #imagePullSecrets:
 #  - name: [your DockerHub user credentials secret]
 
-default_artifact_root: "s3://datalake/mlflow/artifacts"
+artifacts_destination: "s3://datalake/mlflow/artifacts"
 
 
 
@@ -25,6 +25,7 @@ db:
   database: postgres
 
 minio:
+  enabled: true
   url: minio.default.svc.cluster.local:9000
   accesskey: secret
   secretkey: secret
