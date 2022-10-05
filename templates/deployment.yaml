@@ -32,6 +32,8 @@ spec:
             value: "{{ .Values.db.type }}://{{ .Values.db.user }}:{{ .Values.db.password }}@{{ .Values.db.host }}:{{ .Values.db.port }}/{{ .Values.db.database }}"
           - name: ARTIFACTS_DESTINATION
             value: {{ .Values.artifacts_destination }}
+          - name: GUNICORN_OPTS
+            value: {{ .Values.gunicorn_opts }}
           {{- if .Values.minio.enabled }}
           - name: MLFLOW_S3_ENDPOINT_URL
             value: {{ .Values.minio.url }}

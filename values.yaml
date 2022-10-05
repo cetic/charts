@@ -11,6 +11,8 @@ image:
 
 artifacts_destination: "s3://datalake/mlflow/artifacts"
 
+# innrease the MLFlow UI timeout
+gunicorn_opts: "-t360"
 
 
 db:
