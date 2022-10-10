@@ -5,8 +5,14 @@ image:
   tag: 1.5.1
   pullPolicy: IfNotPresent
 
-default_artifact_root: "s3://datalake/mlflow/artifacts"
+## you might want to pull the image via a DockerHub user or private Docker repo user
+#imagePullSecrets:
+#  - name: [your DockerHub user credentials secret]
 
+artifacts_destination: "s3://datalake/mlflow/artifacts"
+
+# innrease the MLFlow UI timeout
+gunicorn_opts: "-t360"
 
 
 db:
@@ -21,6 +27,7 @@ db:
   database: postgres
 
 minio:
+  enabled: true
   url: minio.default.svc.cluster.local:9000
   accesskey: secret
   secretkey: secret
